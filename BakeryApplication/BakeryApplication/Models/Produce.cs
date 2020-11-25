@@ -13,6 +13,8 @@ namespace BakeryApplication.Models
         public string NameOfProduct { get; set; }
         [Required]
         public string CostOfEach { get; set; }
+        [Required]
+        public string ProductCode { get; set; }
 
         [Required]
         public DateTime RecordCreation { get; set; }

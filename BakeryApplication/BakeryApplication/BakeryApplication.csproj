@@ -103,6 +103,11 @@
     <Compile Include="Constants\AppInformation.cs" />
     <Compile Include="Constants\DbConstants.cs" />
     <Compile Include="Helpers\DbHelper.cs" />
+    <Compile Include="Services\SeedDataService.cs" />
+    <Compile Include="Helpers\ModelHelper.cs" />
+    <Compile Include="Tests\Unit\CroissantProduceTest.cs" />
+    <Compile Include="Tests\Unit\BlueberryMuffinTest.cs" />
+    <Compile Include="Tests\Unit\VegimiteScrollProduceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

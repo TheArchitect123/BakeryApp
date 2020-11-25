@@ -28,6 +28,7 @@ namespace BakeryApplication.Services
                 _connection.CreateTable(typeof(Produce));
         }
 
+
         public void BeginTransaction() => _connection.BeginTransaction();
         public void CloseDatabase() => _connection.Close();
 
