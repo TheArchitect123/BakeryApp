@@ -6,7 +6,7 @@ namespace BakeryApplication
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            new ApplicationManager(); //Initialize the App Manager, to boot up the application
         }
     }
 }
