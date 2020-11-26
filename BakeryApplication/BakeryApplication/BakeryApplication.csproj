@@ -105,9 +105,9 @@
     <Compile Include="Helpers\DbHelper.cs" />
     <Compile Include="Services\SeedDataService.cs" />
     <Compile Include="Helpers\ModelHelper.cs" />
-    <Compile Include="Tests\Unit\CroissantProduceTest.cs" />
-    <Compile Include="Tests\Unit\BlueberryMuffinTest.cs" />
-    <Compile Include="Tests\Unit\VegimiteScrollProduceTest.cs" />
+    <Compile Include="Tests\Unit\CroissantProduceTests.cs" />
+    <Compile Include="Tests\Unit\BlueberryMuffinTests.cs" />
+    <Compile Include="Tests\Unit\VegimiteScrollProduceTests.cs" />
     <Compile Include="Helpers\ProduceHelper.cs" />
     <Compile Include="Helpers\DoublesHelper.cs" />
   </ItemGroup>

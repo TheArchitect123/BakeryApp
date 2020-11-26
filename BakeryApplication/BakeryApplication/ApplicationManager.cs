@@ -12,24 +12,13 @@ namespace BakeryApplication
     //ViewModels, Services, Networking, and the Data Layer
     public class ApplicationManager
     {
-        private TinyIoC.TinyIoCContainer _container;
+        public TinyIoC.TinyIoCContainer _container;
         public ApplicationManager()
         {
             if(_container == null) //Initialize the iOC Container if it is null
             _container = new TinyIoC.TinyIoCContainer();
             RegisterViewModels();
             RegisterServices();
-
-            //Start the Application
-            bootApplication();
-        }
-
-        private void bootApplication()
-        {
-            var produceContainer = _container.Resolve<ProduceInputOutputViewModel>();
-            produceContainer.ProcessRequest(Common.ProduceType.VegemiteScroll, 10); //Vegimite Scroll
-            produceContainer.ProcessRequest(Common.ProduceType.BlueberryMuffin, 14); //Blueberry Muffin
-            produceContainer.ProcessRequest(Common.ProduceType.Croissant, 13); //Croissant
         }
 
         #region Registration

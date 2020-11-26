@@ -8,10 +8,8 @@ namespace BakeryApplication.Models
     public class Attempts
     {
         [PrimaryKey, AutoIncrement]
-        public long id { get; set; }
+        public long AttemptNumber { get; set; }
 
-        [Required]
-        public int AttemptNumber { get; set; }
         [Required]
         public string DataEntry { get; set; }
         [Required]

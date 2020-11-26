@@ -5,6 +5,7 @@ using BakeryApplication.Common;
 using BakeryApplication.Helpers;
 using BakeryApplication.Services;
 using System.Collections.Generic;
+using BakeryApplication.Models;
 
 namespace BakeryApplication.ViewModels
 {
@@ -19,26 +20,26 @@ namespace BakeryApplication.ViewModels
 
         public void ProcessRequest(ProduceType produceType, int targetPackages)
         {
+            Console.WriteLine("Number of Attempts" + _dataService.GetAll<Attempts>().Count());
             switch (produceType)
             {
                 case ProduceType.BlueberryMuffin:
-                    WriteLine($"{targetPackages} MB11 {GetCostOfPackages(produceType, targetPackages, DoublesHelper.MB11Components())}");
-                    WriteLine($"{targetPackages}");
+                    WriteLine($"{targetPackages} MB11 \n{GetCostOfPackages(produceType, targetPackages, DoublesHelper.MB11Components())}");
 
                     break;
                 case ProduceType.VegemiteScroll:
-                    WriteLine($"{targetPackages} VS5 {GetCostOfPackages(produceType, targetPackages, DoublesHelper.Vs5Components())}");
-                    WriteLine($"{targetPackages}");
+                    WriteLine($"{targetPackages} VS5 \n{GetCostOfPackages(produceType, targetPackages, DoublesHelper.Vs5Components())}");
                     break;
                 case ProduceType.Croissant:
-                    WriteLine($"{targetPackages} CF {GetCostOfPackages(produceType, targetPackages, DoublesHelper.CFComponents())}");
-                    WriteLine($"{targetPackages}");
+                    WriteLine($"{targetPackages} CF \n{GetCostOfPackages(produceType, targetPackages, DoublesHelper.CFComponents())}");
 
                     break;
             }
+
+            _dataService.Insert(ModelHelper.generateAttemptItem()); //Add a new Attempt into the Database
         }
 
-        private string GetCostOfPackages(ProduceType produceType, int targetPackages, double[] components)
+        public string GetCostOfPackages(ProduceType produceType, int targetPackages, double[] components)
         {
             List<double> foodCombos = new List<double>();
             DoublesHelper.GetCombinationAlgorithm(targetPackages, ref foodCombos);
@@ -78,11 +79,5 @@ namespace BakeryApplication.ViewModels
 
             return "";
         }
-
-        //private string GetItemsIntersectedByTarget()
-        //{
-
-        //}
-        
     }
 }
