@@ -1,8 +1,10 @@
 ﻿using System;
+using static System.Console;
 using System.Linq;
 using BakeryApplication.Common;
 using BakeryApplication.Helpers;
 using BakeryApplication.Services;
+using System.Collections.Generic;
 
 namespace BakeryApplication.ViewModels
 {
@@ -20,17 +22,17 @@ namespace BakeryApplication.ViewModels
             switch (produceType)
             {
                 case ProduceType.BlueberryMuffin:
-                    Console.WriteLine($"{targetPackages} MB11 ${GetCostOfPackages(produceType, targetPackages, DoublesHelper.MB11Components())}");
-                    Console.WriteLine($"{targetPackages}");
+                    WriteLine($"{targetPackages} MB11 {GetCostOfPackages(produceType, targetPackages, DoublesHelper.MB11Components())}");
+                    WriteLine($"{targetPackages}");
 
                     break;
                 case ProduceType.VegemiteScroll:
-                    Console.WriteLine($"{targetPackages} VS5 ${GetCostOfPackages(produceType, targetPackages, DoublesHelper.Vs5Components())}");
-                    Console.WriteLine($"{targetPackages}");
+                    WriteLine($"{targetPackages} VS5 {GetCostOfPackages(produceType, targetPackages, DoublesHelper.Vs5Components())}");
+                    WriteLine($"{targetPackages}");
                     break;
                 case ProduceType.Croissant:
-                    Console.WriteLine($"{targetPackages} CF ${GetCostOfPackages(produceType, targetPackages, DoublesHelper.CFComponents())}");
-                    Console.WriteLine($"{targetPackages}");
+                    WriteLine($"{targetPackages} CF {GetCostOfPackages(produceType, targetPackages, DoublesHelper.CFComponents())}");
+                    WriteLine($"{targetPackages}");
 
                     break;
             }
@@ -38,15 +40,16 @@ namespace BakeryApplication.ViewModels
 
         private string GetCostOfPackages(ProduceType produceType, int targetPackages, double[] components)
         {
-            var foodCombos = DoublesHelper.GetCombinationAlgorithm(components, targetPackages).Intersect(components);
-            if (foodCombos.Count() != 0)
+            List<double> foodCombos = new List<double>();
+            DoublesHelper.GetCombinationAlgorithm(targetPackages, ref foodCombos);
+            if ((foodCombos = foodCombos.Intersect(components).ToList()).Count() != 0)
             {
                 //Get Total cost of Blueberry Muffin
                 if (produceType == ProduceType.BlueberryMuffin)
                 {
                     double costOfValues = 0;
                     foreach (var cost in foodCombos)
-                        costOfValues += cost.getCostOfProduceType(produceType);
+                        costOfValues += cost.GetCostOfProduceType(produceType);
 
                     return $"${costOfValues}";
                 }
@@ -56,7 +59,7 @@ namespace BakeryApplication.ViewModels
                 {
                     double costOfValues = 0;
                     foreach (var cost in foodCombos)
-                        costOfValues += cost.getCostOfProduceType(produceType);
+                        costOfValues += cost.GetCostOfProduceType(produceType);
 
                     return $"${costOfValues}";
                 }
@@ -67,7 +70,7 @@ namespace BakeryApplication.ViewModels
                     //Vegmite Scroll 
                     double costOfValues = 0;
                     foreach (var cost in foodCombos)
-                        costOfValues += cost.getCostOfProduceType(produceType);
+                        costOfValues += cost.GetCostOfProduceType(produceType);
 
                     return $"${costOfValues}";
                 }
@@ -76,6 +79,10 @@ namespace BakeryApplication.ViewModels
             return "";
         }
 
+        //private string GetItemsIntersectedByTarget()
+        //{
+
+        //}
         
     }
 }

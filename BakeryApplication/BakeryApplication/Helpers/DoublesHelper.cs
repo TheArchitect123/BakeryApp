@@ -13,26 +13,43 @@ namespace BakeryApplication.Helpers
         /// <param name="numbers"></param>
         /// <param name="target"></param>
         /// <param name="partial"></param>
-        public static IEnumerable<double> GetCombinationAlgorithm(double[] set, int sum)
+        public static void GetCombinationAlgorithm(int sum, ref List<double> items)
         {
-            for (int i = 0; i < set.Length; i++)
+             DetermineCombinations(sum, ref items);
+        }
+
+        static void DetermineCombinationUtils(int[] arr, int index,
+                                 int num, int reducedNum, ref List<double> items)
+        {
+            if (reducedNum < 0)
+                return;
+            if (reducedNum == 0)
             {
-                int left = sum - (int)set[i];
-                int valueItems = (int)set[i];
-                if (left == 0)
-                    yield return valueItems;
-                else
+                for (int i = 0; i < index; i++)
+                    items.AddRange(arr.ToList().ConvertAll(w => Convert.ToDouble(w)));
+            }
+
+            int prev = (index == 0) ? 1 : arr[index - 1];
+            try
+            {
+                for (int k = prev; k <= num; k++)
                 {
-                    double[] possible = set.Take(i).Where(n => n <= sum).ToArray();
-                    if (possible.Length > 0)
-                    {
-                        foreach (int s in GetCombinationAlgorithm(possible, left))
-                        {
-                            yield return s;
-                        }
-                    }
+                    arr[index] = k;
+                    DetermineCombinationUtils(arr, index + 1, num,
+                                             reducedNum - k, ref items);
                 }
             }
+            catch
+            {
+                DetermineCombinationUtils(arr, index + 1, num,
+                                             reducedNum - prev, ref items);
+            }
+        }
+
+        static void DetermineCombinations(int n, ref List<double> items)
+        {
+            int[] arr = new int[n];
+            DetermineCombinationUtils(arr, 0, n, n, ref items);
         }
 
         public static double GetCostOfProduceType(this double itemValue, ProduceType produce)
@@ -66,13 +83,13 @@ namespace BakeryApplication.Helpers
             throw new ArgumentNullException($"Could not find specified value for {produce.GetType()} type");
         }
 
-        public static double GetBestCombinationOfMaxValues(this IEnumerable<double> itemValues, int targetValue)
-        {
+        //public static double GetBestCombinationOfMaxValues(this IEnumerable<double> itemValues, int targetValue)
+        //{
 
-            //Get the best combination of values that will reach the maximum target value
+        //    //Get the best combination of values that will reach the maximum target value
 
-            throw new ArgumentNullException($"Could not find specified value for {produce.GetType()} type");
-        }
+        //  //  throw new ArgumentNullException($"Could not find specified value for {produce.GetType()} type");
+        //}
 
         //Components for each Produce
         public static double[] Vs5Components() => new double[] { 3, 5 };
