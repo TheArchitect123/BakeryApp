@@ -97,7 +97,6 @@
     <Compile Include="Common\ProduceType.cs" />
     <Compile Include="ViewModels\ProduceInputOutputViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="Constants\AppInformation.cs" />
     <Compile Include="Constants\DbConstants.cs" />
     <Compile Include="Helpers\DbHelper.cs" />
     <Compile Include="Helpers\ModelHelper.cs" />
@@ -116,7 +115,6 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Common\" />
     <Folder Include="Tests\" />
-    <Folder Include="Tests\Integration\" />
     <Folder Include="Tests\Unit\" />
     <Folder Include="Constants\" />
     <Folder Include="Helpers\" />
