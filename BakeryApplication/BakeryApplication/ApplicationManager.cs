@@ -3,6 +3,7 @@ using BakeryApplication.Helpers;
 using BakeryApplication.Services;
 using BakeryApplication.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace BakeryApplication
@@ -26,7 +27,9 @@ namespace BakeryApplication
         private void bootApplication()
         {
             var produceContainer = _container.Resolve<ProduceInputOutputViewModel>();
-            produceContainer.TestMethod();
+            produceContainer.ProcessRequest(Common.ProduceType.VegemiteScroll, 10); //Vegimite Scroll
+            produceContainer.ProcessRequest(Common.ProduceType.BlueberryMuffin, 14); //Blueberry Muffin
+            produceContainer.ProcessRequest(Common.ProduceType.Croissant, 13); //Croissant
         }
 
         #region Registration

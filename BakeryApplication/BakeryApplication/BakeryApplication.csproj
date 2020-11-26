@@ -108,6 +108,8 @@
     <Compile Include="Tests\Unit\CroissantProduceTest.cs" />
     <Compile Include="Tests\Unit\BlueberryMuffinTest.cs" />
     <Compile Include="Tests\Unit\VegimiteScrollProduceTest.cs" />
+    <Compile Include="Helpers\ProduceHelper.cs" />
+    <Compile Include="Helpers\DoublesHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
