@@ -83,14 +83,6 @@ namespace BakeryApplication.Helpers
             throw new ArgumentNullException($"Could not find specified value for {produce.GetType()} type");
         }
 
-        //public static double GetBestCombinationOfMaxValues(this IEnumerable<double> itemValues, int targetValue)
-        //{
-
-        //    //Get the best combination of values that will reach the maximum target value
-
-        //  //  throw new ArgumentNullException($"Could not find specified value for {produce.GetType()} type");
-        //}
-
         //Components for each Produce
         public static double[] Vs5Components() => new double[] { 3, 5 };
         public static double[] CFComponents() => new double[] { 3, 5, 9 };
